@@ -1,7 +1,9 @@
 <template>
-    <Menu />
-    <router-view />  
-    <Footer />
+    <div class="container-fluid">
+        <Menu />
+        <router-view />  
+        <Footer />
+    </div>
 </template>
 
 <script>
@@ -17,5 +19,7 @@
 </script>
 
 <style type="text/css">
-    
+.container-fluid{
+    /*padding: 0px;*/
+}
 </style>

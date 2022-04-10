@@ -18,14 +18,14 @@
           <!-- Email input -->
           <div class="form-outline mb-4">
             <input type="email" id="form3Example3" class="form-control form-control-lg"
-              placeholder="Enter a valid email address" />
+              placeholder="Enter a valid email address" v-model='username'/>
             <label class="form-label" for="form3Example3">Email address</label>
           </div>
 
           <!-- Password input -->
           <div class="form-outline mb-3">
             <input type="password" id="form3Example4" class="form-control form-control-lg"
-              placeholder="Enter password" />
+              placeholder="Enter password" v-model='password' />
             <label class="form-label" for="form3Example4">Password</label>
           </div>
 
@@ -42,7 +42,11 @@
 
           <div class="text-center text-lg-start mt-4 pt-2">
             <button type="button" class="btn btn-primary btn-lg"
-              style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+              style="padding-left: 2.5rem; padding-right: 2.5rem;"
+              @click='handelSubmitLogin()'
+            >
+                Login
+            </button>
             <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? 
             	<router-link to='/register' class="link-danger">Register</router-link>
             </p>
@@ -55,7 +59,37 @@
 </template>
 
 <script>
-	export default {}
+  import API from '@/services/index.js'
+  import { userStore } from '@/stores/userStore.js'
+	export default {
+    data(){
+      return{
+        username: "admin1",
+        password: "admin1",
+      }
+    },
+
+    setup(){
+      const user = userStore()
+      return { user }
+    },
+
+    methods:{
+      handelSubmitLogin(){
+        const username = this.username
+        const password = this.password
+        API('post','/login',{username,password})
+        .then((res)=>{
+            // console.log(res.data)
+            this.user.profile = res.data
+            console.log(this.user)
+            this.$router.push('/')
+        }).catch((err)=>{
+          alert(err.response.data)
+        })
+      }
+    }
+  }
 </script>
 
 <style type="text/css">

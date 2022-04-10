@@ -5,6 +5,7 @@ import CartPage from '@/views/pages/CartPage.vue'
 import LoginPage from '@/views/pages/LoginPage.vue'
 import RegisterPage from '@/views/pages/RegisterPage.vue'
 import LayoutWebsite from '@/views/LayoutWebsite.vue'
+import KindPage from '@/views/pages/KindPage.vue'
 
 const routes = [
 	{
@@ -24,12 +25,13 @@ const routes = [
 				path: '/cart',
 				component: CartPage,
 			},
+			{
+				path: '/home/:slug',
+				component: KindPage,
+			},
 		],
 	},
-	// {
-	// 	path: '/home',
-	// 	component: HomePage,
-	// },
+
 	// {
 	// 	path: '/detail',
 	// 	component: DetailPage,
