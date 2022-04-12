@@ -1,5 +1,4 @@
 <template>
-    {{ log1() }}
     <header>
         <div class="header-container">
             <div class="row">
@@ -36,6 +35,9 @@
                         </span>
                     </router-link>
                 </div>
+                <div class="logout col-sm-2 col-lg-1" v-if='user.profile' @click='handelLogout()'>
+                    <i class="bi bi-box-arrow-right"></i>Logout
+                </div>
             </div>
         </div>
 
@@ -47,37 +49,11 @@
                 <span class="navbar-toggler-icon "></span>
               </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent ">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 "
+                        v-for='item in pageUrl'
+                    >
                         <li class="nav-item ">
-                            <router-link to='/home/phong-ngu' class="nav-link ">Phòng ngủ</router-link>
-                        </li>
-                        <li class="nav-item ">
-                            <router-link to='/home/phong-an' class="nav-link ">Phòng ăn</router-link>
-                        </li>
-                        <li class="nav-item ">
-                            <router-link to='/home/phong-khach' class="nav-link ">Phòng khách</router-link>
-                        </li>
-                        <li class="nav-item ">
-                            <router-link to='/home/tu-go' class="nav-link ">Tủ gỗ</router-link>
-                        </li>
-                        <li class="nav-item ">
-                            <router-link to='/home/cua-go' class="nav-link ">Cửa gỗ</router-link>
-                        </li>
-                        <li class="nav-item dropdown ">
-                            <a class="nav-link dropdown-toggle " href="# " id="navbarDropdown " role="button " data-bs-toggle="dropdown " aria-expanded="false ">
-                      Dropdown
-                    </a>
-                            <ul class="dropdown-menu " aria-labelledby="navbarDropdown ">
-                                <li><a class="dropdown-item " href="# ">Action</a></li>
-                                <li><a class="dropdown-item " href="# ">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider ">
-                                </li>
-                                <li><a class="dropdown-item " href="# ">Something else here</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link disabled ">Disabled</a>
+                            <router-link :to='`/home/${item.url}`' class="nav-link ">{{item.name}}</router-link>
                         </li>
                     </ul>
                     <form class="d-flex ">
@@ -94,13 +70,28 @@
 <script>
     import { userStore } from '@/stores/userStore.js'
     export default {
+        data(){
+            return {
+                pageUrl : [
+                    {url: 'phong-ngu', name: "Phòng ngủ"},
+                    {url: "phong-an", name: "Phòng ăn"},
+                    {url: "phong-khach", name: "Phòng khách"},
+                    {url: "tu-go", name: "Tủ gỗ"},
+                    {url: "cua-go", name: "Cửa gỗ"},
+                ]
+            }
+        },
         setup(){
             const user = userStore()
             return { user, }
         },
         methods:{
-            log1(){
-                console.log("Helo",this.user.profile)
+
+            handelLogout(){
+                localStorage.removeItem('refreshToken');
+                localStorage.removeItem('acceptToken');
+                localStorage.removeItem('user');
+                this.$router.push('/login')
             }
         },
     }
@@ -117,7 +108,7 @@
     font-size: 25px;
     /*line-height: 100%;*/
 } 
-.logo, {
+.logo {
     width: 100%;
     align-items: center;
     color: black;
@@ -125,7 +116,7 @@
     /* margin-top: 10px; */
 }
 
-.logo h1 ,{
+.logo h1 {
     font-size: 35px;
     font-weight: 700;
     text-align: center;
@@ -145,12 +136,12 @@ ul li a {
     font-size: 18px;
     font-weight: 400;
 }    
-a{
+a {
     color: black;
     text-decoration: none;
     text-shadow: 2px 2px 2px #ddd;  
 }
-a:hover{
+a:hover,.logout:hover{
     color: black;
     text-shadow: 2px 2px 2px #aaa;
 }
@@ -166,4 +157,9 @@ a:hover{
     transform: translate(-80%,-0%)!important;
 }
 
+.logout{
+    color: black;
+    text-shadow: 2px 2px 2px #ddd;  
+    cursor: pointer;
+}
 </style>

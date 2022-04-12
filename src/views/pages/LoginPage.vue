@@ -82,12 +82,17 @@
         .then((res)=>{
             // console.log(res.data)
             this.user.profile = res.data
-            console.log(this.user)
+            localStorage.setItem('acceptToken', JSON.stringify(res.data.acceptToken));
+            localStorage.setItem('user', JSON.stringify(res.data));
+            console.log(this.user.profile)
+            console.log(this.user.profile.acceptToken)
             this.$router.push('/')
         }).catch((err)=>{
-          alert(err.response.data)
         })
-      }
+      },
+    },
+    computed:{
+
     }
   }
 </script>

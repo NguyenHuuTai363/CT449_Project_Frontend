@@ -7,17 +7,6 @@
 	<div class="khoangtrang"></div>
 	<LayoutImageContent />
 	<div class="khoangtrang"></div>
-	<div class="card-title-box row">
-		<Cart class='col-4'/>
-		<Cart class='col-4'/>
-		<Cart class='col-4'/>
-		<Cart class='col-4'/>
-		<Cart class='col-4'/>
-		<Cart class='col-4'/>
-		<Cart class='col-4'/>
-		<Cart class='col-4'/>
-		<Cart class='col-4'/>
-	</div>
 
 </template>
 

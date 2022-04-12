@@ -1,15 +1,15 @@
 <template>
-	<div class="cart">
+    <div class="cart col-4">
         <div class="content">
                 <router-link to='/detail'>
-                    <img src="@/assets/images/banner2.jpg" class="card-img-top" alt="..." />
+                    <img v-bind:src="item.image" class="card-img-top" alt="..." />
                 </router-link>
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">{{item.name}}</h5>
                     <div class="row">
                         <div class="col-10">
-                            <div class="card-content col-10">Price: 500.000.000đ</div>
-                            <div class="card-content col-10">Discount: 10%</div>
+                            <div class="card-content col-10">Price: {{item.price}}</div>
+                            <div class="card-content col-10">Discount: {{item.discount*100}}%</div>
                         </div>
                         <div class="col-2"><i class="bi bi-cart-fill"></i></div>
                     </div>
@@ -18,18 +18,22 @@
     </div>
 </template>
 <script>
-	export default {}
+    import h1 from'@/assets/images/cua_go.jpg'
+	export default {
+        props:['product'],
+        data(){
+            return{
+                item: this.product,
+                ima1: h1,
+                ima: '/src/assets/images/cua_go.jpg',
+            }
+        },
+        setup(){
+        },
+        methods:{
+        },
+    }
 </script>
 <style type="text/css" scoped>
-.cart{
-}
-.content{
-    width: 98%;
-    border: solid 1px #ddd;
-    border-radius: 5px 5px 5px 5px;
-    margin: 1rem auto;
-}
-.card-title, .card-content{
-    text-align: left;
-}
+
 </style>
