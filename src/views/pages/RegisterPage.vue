@@ -14,25 +14,47 @@
           <div class="divider d-flex align-items-center my-4">
             <p class="text-center fw-bold mx-3 mb-0"></p>
           </div>
+          <div class="form-row">
+            <div class="form-outline mb-3 form-group col-lg-6">
+              <input type="text" class="form-control form-control-lg"
+                placeholder="First Name"  v-model='formRegister.firstName' required />
+              <label class="form-label" for="form3Example5">First Name</label>
+            </div>
 
+            <div class="form-outline mb-3  form-group col-lg-6">
+              <input type="text" class="form-control form-control-lg"
+                placeholder="Last Name"  v-model='formRegister.lastName' required />
+              <label class="form-label" for="form3Example5">Last Name</label>
+            </div>
+          </div>
           <!-- Email input -->
           <div class="form-outline mb-4">
             <input type="text" id="form3Example3" class="form-control form-control-lg"
-              placeholder="Enter a valid email address" v-model='username' required />
+              placeholder="Enter a valid email address" v-model='formRegister.username' required />
             <label class="form-label" for="form3Example3">Email address</label>
           </div>
 
           <!-- Password input -->
           <div class="form-outline mb-3">
             <input type="password" id="form3Example4" class="form-control form-control-lg"
-              placeholder="Enter password" v-model='password' required />
+              placeholder="Enter password" v-model='formRegister.password' required />
             <label class="form-label" for="form3Example4">Password</label>
           </div>
           <!-- Password again -->
           <div class="form-outline mb-3">
             <input type="password" id="form3Example5" class="form-control form-control-lg"
-              placeholder="Again password"  v-model='rePassword' required />
+              placeholder="Again password"  v-model='formRegister.rePassword' required />
             <label class="form-label" for="form3Example5">Again password</label>
+          </div>
+          <div class="form-outline mb-3">
+            <input type="text" class="form-control form-control-lg"
+              placeholder="Address"  v-model='formRegister.address' required />
+            <label class="form-label" for="form3Example5">Address</label>
+          </div>
+          <div class="form-outline mb-3">
+            <input type="text" class="form-control form-control-lg"
+              placeholder="Phone Number"  v-model='formRegister.phoneNumber' required />
+            <label class="form-label" for="form3Example5">Phone Number</label>
           </div>
 
           <div class="text-center text-lg-start mt-4 pt-2">
@@ -60,20 +82,24 @@
 	export default {
     data(){
       return{
-        username: "",
-        password: "",
-        rePassword: "",
+        formRegister:{        
+          username: "",
+          password: "",
+          rePassword: "",
+          phoneNumber: "",
+          address: "",
+          firstName: "",
+          lastName: "",
+        },
       }
     },
     methods:{
       handelSubmitRegister(){
-        const username = this.username
-        const password = this.password
-        const rePassword = this.rePassword
-        if(password !== rePassword || !username || !password){
+        const { username,password,rePassword,phoneNumber,address,firstName,lastName} = this.formRegister
+        if(password !== rePassword || !username || !password || !phoneNumber || !address || !firstName || !lastName){
           alert("Mật khẩu không khớp")
         }else{
-          API("post","/register",{username,password})
+          API("post","/register",this.formRegister)
           .then((res)=>{
             console.log(res.data)
             this.$router.push('/login')
@@ -87,6 +113,11 @@
   }
 </script>
 
-<style type="text/css">
-	
+<style type="text/css" scoped>
+.form-row{
+  display: flex;
+}
+.form-group{
+  padding: 0.5rem;
+}
 </style>

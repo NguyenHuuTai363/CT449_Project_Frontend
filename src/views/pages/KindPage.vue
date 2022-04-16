@@ -4,12 +4,12 @@
 		class="card-title-box container-fluid " 
 		v-for='item in product.listItem'
 	>
-		<Cart class='card' :product='item' v-if='item.kind === this.$route.params.slug'/>
+		<Card class='card' :product='item' v-if='item.kind === this.$route.params.slug'/>
 	</div>
 </template>
 
 <script>
-	import Cart from '@/components/Cart.vue'
+	import Card from '@/components/Card.vue'
 	import { productStore } from '@/stores/productStore.js'
 	export default {
 		data(){
@@ -22,7 +22,7 @@
 			return { product }
 		},
 		components:{
-			Cart,
+			Card,
 		},
 		methods:{
 			getNamePage(){
@@ -33,5 +33,10 @@
 </script>
 
 <style type="text/css" scoped>
-
+/*.card{
+	float: left;
+}*/
+.card-title-box{
+	display: flex;
+}
 </style>

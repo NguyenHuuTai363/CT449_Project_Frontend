@@ -1,8 +1,7 @@
 <template>
 	{{getProductAPI()}}
-	<Pagination />
+	<Carousell />
 	<div class="khoangtrang"></div>
-
 	<Layout21 />
 	<div class="khoangtrang"></div>
 	<LayoutImageContent />
@@ -12,8 +11,8 @@
 
 <script>
 	import API from '@/services/index.js'
-	import Pagination from '@/components/Pagination.vue'
-	import Cart from '@/components/Cart.vue'
+	import Carousell from '@/components/Carousell.vue'
+	import Card from '@/components/Card.vue'
 	import Layout21 from '@/components/Layout21.vue'
 	import LayoutImageContent from '@/components/LayoutImageContent.vue'
 	export default {
@@ -31,8 +30,8 @@
 			}
 		},
 		components:{
-			Pagination,
-			Cart,
+			Carousell,
+			Card,
 			Layout21,
 			LayoutImageContent,
 		}

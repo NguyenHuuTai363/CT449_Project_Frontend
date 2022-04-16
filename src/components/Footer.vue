@@ -34,6 +34,7 @@
             </div>
         </div>
     </footer>
+    <footer><p>Trang web chỉ mang tính chất học tập. Không có khả năng thay thế một trang web thật</p></footer>
 </template>
 
 <script>

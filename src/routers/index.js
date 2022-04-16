@@ -6,6 +6,7 @@ import LoginPage from '@/views/pages/LoginPage.vue'
 import RegisterPage from '@/views/pages/RegisterPage.vue'
 import LayoutWebsite from '@/views/LayoutWebsite.vue'
 import KindPage from '@/views/pages/KindPage.vue'
+import FormPayMentPage from '@/views/pages/FormPayMentPage.vue'
 
 const routes = [
 	{
@@ -18,7 +19,7 @@ const routes = [
 				component: HomePage,
 			},
 			{
-				path: '/detail',
+				path: '/detail/:id',
 				component: DetailPage,
 			},
 			{
@@ -26,20 +27,16 @@ const routes = [
 				component: CartPage,
 			},
 			{
-				path: '/home/:slug',
+				path: '/:slug',
 				component: KindPage,
 			},
+
 		],
 	},
-
-	// {
-	// 	path: '/detail',
-	// 	component: DetailPage,
-	// },
-	// {
-	// 	path: '/cart',
-	// 	component: CartPage,
-	// },
+	{
+		path:'/buy',
+		component: FormPayMentPage
+	},
 	{
 		path: '/login',
 		component: LoginPage,

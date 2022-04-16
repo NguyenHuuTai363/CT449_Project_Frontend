@@ -8,10 +8,14 @@
                     </router-link>
                 </div>
                 <div class="cart col-sm-1 col-lg-1">
-                    <router-link to='/cart'>
+                    <router-link to='/cart' >
                         <span  class="btn position-relative">
                           <i class="bi bi-cart-fill"></i>
-                          <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">2
+                          <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                            {{
+                                user.profile !== null ?
+                                user.profile.cart.length : 0
+                            }}
                             <span class="visually-hidden"></span>
                           </span>
                         </span>
@@ -51,11 +55,16 @@
                     v-for='item in pageUrl'
                 >
                     <li class="nav-item ">
-                        <router-link :to='`/home/${item.url}`' class="nav-link ">{{item.name}}</router-link>
+                        <router-link :to='`/${item.url}`' class="nav-link ">{{item.name}}</router-link>
                     </li>
                 </ul>
                 <form class="d-flex ">
-                    <input class="form-control me-2 " type="search " placeholder="Search " aria-label="Search ">
+                    <input 
+                        class="form-control me-2 "
+                        type="search " 
+                        placeholder='Search ' 
+                        aria-label="Search "
+                    />
                     <button class="btn btn-outline-success " type="submit ">Search</button>
                 </form>
             </div>
@@ -65,6 +74,8 @@
 
 <script>
     import { userStore } from '@/stores/userStore.js'
+    import { productStore } from '@/stores/productStore.js'
+    import API from '@/services/index.js'
     export default {
         data(){
             return {
@@ -79,15 +90,17 @@
         },
         setup(){
             const user = userStore()
-            return { user, }
+            const product = productStore()
+            return { user, product}
         },
         methods:{
 
             handelLogout(){
                 localStorage.removeItem('refreshToken');
                 localStorage.removeItem('acceptToken');
-                localStorage.removeItem('user');
-                this.$router.push('/login')
+                localStorage.removeItem('user');    
+                this.user.profile = null
+                this.user.carts = null
             }
         },
     }
