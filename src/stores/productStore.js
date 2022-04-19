@@ -4,6 +4,7 @@ export const productStore = defineStore("product",{
 	state:()=>{
 		return {
 			listItem : [],
+			listSearch: [],
 		}
 	}
 })

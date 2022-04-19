@@ -58,21 +58,17 @@
                         <router-link :to='`/${item.url}`' class="nav-link ">{{item.name}}</router-link>
                     </li>
                 </ul>
-                <form class="d-flex ">
-                    <input 
-                        class="form-control me-2 "
-                        type="search " 
-                        placeholder='Search ' 
-                        aria-label="Search "
-                    />
-                    <button class="btn btn-outline-success " type="submit ">Search</button>
-                </form>
+                <Search />
             </div>
         </nav>
+        <div v-for='item in resultQuery'>
+            <div>{{item}}</div>
+        </div>
     </header>
 </template>
 
 <script>
+    import  Search from '@/components/Search.vue'
     import { userStore } from '@/stores/userStore.js'
     import { productStore } from '@/stores/productStore.js'
     import API from '@/services/index.js'
@@ -94,7 +90,6 @@
             return { user, product}
         },
         methods:{
-
             handelLogout(){
                 localStorage.removeItem('refreshToken');
                 localStorage.removeItem('acceptToken');
@@ -103,6 +98,9 @@
                 this.user.carts = null
             }
         },
+        components:{
+            Search,
+        }
     }
 </script>
 

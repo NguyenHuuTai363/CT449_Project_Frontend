@@ -1,5 +1,11 @@
 <template>
-
+	<div 
+		class="card-title-box container-fluid " 
+		v-for='item in product.listSearch'
+	>
+		<Card class='card' :product='item' />
+	</div>
+	<h1>Hello</h1>
 	<div 
 		class="card-title-box container-fluid " 
 		v-for='item in product.listItem'

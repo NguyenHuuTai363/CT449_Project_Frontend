@@ -1,3 +1,4 @@
+
 const shareMethods = {
 	formatPrice : (pri)=>{
         const price =  pri.toLocaleString('de-DE', {
@@ -7,5 +8,6 @@ const shareMethods = {
         });
         return price
     },
+
 }
 export default shareMethods

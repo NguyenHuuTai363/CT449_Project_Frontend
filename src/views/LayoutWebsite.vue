@@ -2,7 +2,6 @@
 
     <div class="container-fluid">
         {{getProductAPI()}}
-        <!-- {{product.listItem}} -->
         <Menu />
         <router-view />  
         <Footer />
