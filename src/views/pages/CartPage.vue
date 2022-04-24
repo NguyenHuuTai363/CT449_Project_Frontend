@@ -17,28 +17,32 @@
                             <tbody v-for='product in user.profile.cart'>
                                 <tr class="showItem">
                                     <td>
-                                        <figure class="itemside align-items-center">
-                                            <div class="aside">
-                                            	<img :src="product.item.image" class="img-sm"/>
-                                            </div>
-                                            <figcaption class="info"> 
-                                            	<a href="#" class="title text-dark" data-abc="true">		{{product.item.name}}
-                                            	</a>
-                                                <p class="text-muted small">
-                                                	Kích thước: {{product.item.size}}<br> Brand: {{product.item.brand}}
-                                                </p>
-                                            </figcaption>
-                                        </figure>
+                                        <router-link :to='`/detail/${product.item._id}`'>
+                                            <figure class="itemside align-items-center">
+                                                <div class="aside">
+                                                    
+                                                	   <img :src="product.item.image" class="img-sm"/>
+                                                    
+                                                </div>
+                                                <figcaption class="info"> 
+                                                	<a href="#" class="title text-dark" data-abc="true">		{{product.item.name}}
+                                                	</a>
+                                                    <p class="text-muted small">
+                                                    	Kích thước: {{product.item.size}}<br> Brand: {{product.item.brand}}
+                                                    </p>
+                                                </figcaption>
+                                            </figure>
+                                        </router-link>
                                     </td>
                                     <td>
                                         <div class="col-xs-6" style="margin-left: 1px;">
                                             <div class="product_quantity">
                                                 <div class="quantity">{{product.quantityBuy}}</div>
                                                 <div class="upAndDown">
-                                                    <div id="pre" @click='increaseQuantity(product.quantityBuy,product.item.quantity)'>
+                                                    <div id="pre" @click='increaseQuantity(product.item._id)'>
                                                         <i class="bi bi-caret-up-fill"></i>
                                                     </div>
-                                                    <div id="nex" @click='reduceQuantity(product.quantityBuy,product.item.quantity)'>
+                                                    <div id="nex" @click='reduceQuantity(product.item._id)'>
                                                         <i class="bi bi-caret-down-fill" ></i>
                                                     </div>
                                                 </div>
@@ -52,7 +56,7 @@
                                     </td>
                                     <td class="text-right d-none d-md-block">
                                         <span data-original-title="Save to Wishlist" title="" class="btn" data-toggle="tooltip" data-abc="true">
-                                            <input type="checkbox" v-model='product.checkBuy' @click='product.checkBuy = false'/>
+                                            <input type="checkbox" v-model='product.checkBuy' @click='selectProduct(product.item._id)'/>
                                         </span>
                                         <span class="btn btn-danger" data-abc="true"  @click='deleteItemInCart(product.item)'>Xóa</span>
                                     </td>
@@ -138,22 +142,38 @@
 					})
 				}
 			},
-            increaseQuantity(quantity, quantityProduct){
-                quantity += 1
-                if(quantity > quantityProduct)
-                    return quantityProduct
-                console.log(quantity)
-                console.log(quantityProduct)
-                return quantity
+            increaseQuantity(id){
+                const {profile} = this.user
+                for( var i = 0;i<profile.cart.length; i++){
+                    if(profile.cart[i].item._id === id){
+                        if(profile.cart[i].item.quantity >= profile.cart[i].quantityBuy)
+                            this.user.profile.cart[i].quantityBuy+=1
+                    }
+                }
+                    
             },
-            reduceQuantity(quantity, quantityProduct){
-                console.log(quantity)
-                console.log(quantityProduct)
-                quantity -= 1
-                if(quantity < 1)
-                    return 1
-                return quantity
+            reduceQuantity(id){
+                const {profile} = this.user
+                for( var i = 0;i<profile.cart.length; i++){
+                    if(profile.cart[i].item._id === id){
+                        if(1 < profile.cart[i].quantityBuy)
+                            this.user.profile.cart[i].quantityBuy-=1
+                    }
+                }
             },
+            selectProduct(id){
+                const {profile} = this.user
+                for( var i = 0;i<profile.cart.length; i++){
+                    if(profile.cart[i].item._id === id){
+                        if(profile.cart[i].checkBuy === true){
+                            this.user.profile.cart[i].checkBuy = false
+                        }
+                        if(profile.cart[i].checkBuy === false){
+                            this.user.profile.cart[i].checkBuy = true
+                        }
+                    }
+                }
+            },                
 		},
 		computed:{
 			totalPay(){
@@ -165,7 +185,7 @@
                     this.pay = 0
 					for (var i = 0; i < cart.length; i++) {
                         if(cart[i].checkBuy === true){
-                            this.pay += cart[i].item.price * cart[i].item.discount
+                            this.pay += cart[i].item.price * cart[i].item.discount * cart[i].quantityBuy
                         }
 					}
                     this.shipping = this.pay * 0.01

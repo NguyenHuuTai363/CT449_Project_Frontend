@@ -1,8 +1,8 @@
 <template>
-    <div class="card col-4">
+    <div class="card">
         <div class="content">
                 <router-link :to='`/detail/${item._id}`'>
-                    <img v-bind:src="item.image" class="card-img-top" alt="..." />
+                    <img v-bind:src="item.image" class="card-img-top" alt="item.image" />
                 </router-link>
                 <div class="card-body">
                     <h5 class="card-title">{{item.name}}</h5>
@@ -10,6 +10,7 @@
                         <div class="col-10">
                             <div class="card-content col-10">Price: {{formatPrice(item.price)}}</div>
                             <div class="card-content col-10">Discount: {{item.discount*100}}%</div>
+                            <div class="card-content col-10">Quantity: {{item.quantity}}</div>
                         </div>
                         <div class="col-2"><i class="bi bi-cart-fill" @click='addProductToCart(item)'></i></div>
                     </div>
@@ -59,8 +60,8 @@
     }
 </script>
 <style type="text/css" scoped>
-.card {
+/*.card {
     float: left;
-}
+}*/
 
 </style>

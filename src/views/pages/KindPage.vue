@@ -1,26 +1,34 @@
 <template>
-	<div 
-		class="card-title-box container-fluid " 
+<!-- 	<div 
+		class="container " 
 		v-for='item in product.listSearch'
 	>
-		<Card class='card' :product='item' />
+		<Card class='' :product='item' />
 	</div>
-	<h1>Hello</h1>
-	<div 
-		class="card-title-box container-fluid " 
-		v-for='item in product.listItem'
-	>
-		<Card class='card' :product='item' v-if='item.kind === this.$route.params.slug'/>
+	<h1>Hello</h1> -->
+	
+	<div class="container">
+		<div 
+			v-for='item in getProductFromParams'
+		>
+			<Card 
+				class='card' 
+				:key='item._id' 
+				:product='item' 
+				v-if='item.kind === $route.params.slug'/>
+		</div>
 	</div>
 </template>
 
 <script>
 	import Card from '@/components/Card.vue'
+	import API from '@/services/index.js'
 	import { productStore } from '@/stores/productStore.js'
 	export default {
 		data(){
 			return {
 				namePage: "",
+				items: [],
 			}
 		},
 		setup(){
@@ -31,18 +39,29 @@
 			Card,
 		},
 		methods:{
-			getNamePage(){
-				return this.$route.params.slug
-			},
+		},
+		computed:{
+			getProductFromParams(){
+				var items = []
+				for (var i = 0; i < this.product.listItem.length; i++) {
+					if (this.product.listItem[i].kind === this.$route.params.slug) {
+						items.push(this.product.listItem[i])
+					}
+				}
+				return items
+			}
 		}
 	}
 </script>
 
 <style type="text/css" scoped>
-/*.card{
-	float: left;
-}*/
-.card-title-box{
-	display: flex;
-}
+.container{
+	/*display: flex;*/
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    background-color: #2196F3;
+    align-items: center;
+    justify-items: center;
+  }
 </style>
