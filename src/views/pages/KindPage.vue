@@ -58,7 +58,7 @@
 .container{
 	/*display: flex;*/
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
     gap: 10px;
     background-color: #2196F3;
     align-items: center;

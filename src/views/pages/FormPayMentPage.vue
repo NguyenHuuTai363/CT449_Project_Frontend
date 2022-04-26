@@ -92,13 +92,24 @@
 					if(cart[i].checkBuy === true){
 						listItem.push({quantityBuy: cart[i].quantityBuy, item: cart[i].item})
 						var quantity = cart[i].item.quantity - cart[i].quantityBuy
+						// Cap nhat lai so luong sp
 						API('put', `/product/${cart[i].item._id}` , {quantity:quantity})
 						.then((res)=>{
-							console.log(res.data)
+							// console.log()
 						}).catch((err)=>{
 							console.log(err)
-						})					
+						})
+						// Xoa sp trong gio hang
+						var item = cart[i].item
+						console.log(this.user.profile._id)
+						API('put', `/${this.user.profile._id}/cart/delete` , {item:item})
+						.then((res)=>{
+							this.user.profile = res.data
+						}).catch((err)=>{
+							console.log(err)
+						})						
 					}
+
 				}
 				var req = {name: name, address: address, totalPrice: this.pay, listItem: listItem}
 				API('post', '/cart/buy' , req)

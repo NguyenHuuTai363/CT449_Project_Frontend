@@ -13,8 +13,14 @@
                           <i class="bi bi-cart-fill"></i>
                           <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
                             {{
-                                user.profile !== null ?
-                                user.profile.cart.length : 0
+                                user.profile !== null 
+                                ?
+                                    user.profile.cart !== null 
+                                    ? 
+                                    user.profile.cart.length
+                                    : 
+                                    0
+                                :0
                             }}
                             <span class="visually-hidden"></span>
                           </span>
