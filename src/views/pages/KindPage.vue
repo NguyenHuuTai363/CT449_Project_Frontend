@@ -1,16 +1,12 @@
 <template>
-<!-- 	<div 
-		class="container " 
-		v-for='item in product.listSearch'
-	>
-		<Card class='' :product='item' />
+	<div class="container ">
+		<div class="" v-for='item in product.listSearch'>
+			<Card class='' :product='item' />
+		</div>
+		
 	</div>
-	<h1>Hello</h1> -->
-	
 	<div class="container">
-		<div 
-			v-for='item in getProductFromParams'
-		>
+		<div v-for='item in getProductFromParams'>
 			<Card 
 				class='card' 
 				:key='item._id' 
@@ -56,12 +52,66 @@
 
 <style type="text/css" scoped>
 .container{
-	/*display: flex;*/
+	width: 100%;
     display: grid;
     grid-template-columns: auto auto auto auto;
     gap: 10px;
-    background-color: #2196F3;
+    background-color: #ffffff;
     align-items: center;
     justify-items: center;
-  }
+	margin-right: 5%;
+}
+
+@media only screen and (max-width: 2560px) {
+    html {
+        font-size: 100%;
+    }
+
+    .container {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+		margin: 0 auto;
+    }
+
+    .card-detail-content {
+        flex-direction: column;
+    }
+ 
+}
+
+@media only screen and (max-width: 980px) {
+    html {
+        font-size: 50%;
+    }
+
+    .container {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto;
+		margin: 0 auto;
+    }
+
+    .card-detail-content {
+        flex-direction: column;
+    }
+ 
+}
+
+@media only screen and (max-width: 780px){
+    .container {
+		display: block;
+		width: 100%;
+		margin:0 auto;
+	}
+}
+
+@media only screen and (max-width: 480px){
+    .container {
+		display: block;
+		width: 100%;
+		margin: 0 auto;
+    }
+}
+
 </style>

@@ -1,5 +1,5 @@
 <template>
-        <div class="">
+        <div class="introduce">
             <div class="row">
                 <div class="col-sm-5">
                     <img src="@/assets/images/anh_gioi_thieu_1.jpg" width="100%" alt="">
@@ -30,5 +30,14 @@
 
 .card-title-box .card {
     margin: 10px;
+}
+.introduce-text p {
+    color: rgb(91, 90, 90);
+}
+
+.introduce {
+    width: 80%;
+    padding-top: 25px;
+    margin: 0 auto;
 }
 </style>

@@ -1,8 +1,7 @@
 <template>
 <div class="container col-7">
 	<div class="invoice">
-		<h2>MEGA Store</h2>
-		<h5>http://localhost:3000</h5>
+		<img class="invoice-logo" src="/src/assets/images/Logo.png" width="140" height="50"  alt="">
 		 <div class="khoangcach"></div>
 		<div class="info row col-10">
 			<div class="col-5">Họ tên: {{info.firstName}} {{info.lastName}}</div>
@@ -59,7 +58,7 @@
 			<div class="address col-5">{{totalPay}}{{formatPrice(pay)}}</div>
 		</div><br/>
 	    <div class="khoangcach"></div><br/>
-	    <button class="btn btn-success" @click='confirmPayment()'>Xác nhận thanh toán</button>
+	    <button class="btn btn-success" @click='confirmPayment()' style="background-color: #212529; text-shadow: none;">Xác nhận thanh toán</button>
 	</div>
 </div>
 </template>
@@ -173,4 +172,35 @@
 h2{
 	margin: 0 auto;
 }
+
+.invoice {
+	
+	border: 2px solid rgb(53, 53, 53);
+	border-radius: 20px;
+	padding: 1.5rem;
+}
+.invoice-logo {
+	margin-left: 22rem;
+	margin-bottom: .8rem;
+}
+
+@media only screen and (max-width: 980px) {
+	.invoice {
+		width: 100%;
+	}
+ 
+}
+
+@media only screen and (max-width: 780px){
+   .invoice {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 480px){
+    .invoice {
+		width: 100%;
+	}
+}
+
 </style>

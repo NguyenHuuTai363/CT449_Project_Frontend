@@ -2,10 +2,11 @@
 	{{getProductAPI()}}
 	<Carousell />
 	<div class="khoangtrang"></div>
-	<Layout21 />
-	<div class="khoangtrang"></div>
 	<LayoutImageContent />
 	<div class="khoangtrang"></div>
+	<Layout21 />
+	<div class="khoangtrang"></div>
+	
 
 </template>
 

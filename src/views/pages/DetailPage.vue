@@ -1,7 +1,7 @@
 <template>
 	
 	{{getDetailProduct()}}
-	<div class="khoangtrang"><h2 >Chi tiết sản phẩm</h2></div>
+	<div class="khoangtrang"><h2>Chi tiết sản phẩm</h2></div>
     <div class="row container detail" v-if='item'>
         <div class="col-lg-7 order-lg-2 order-1">
         	<div class="img">
@@ -11,8 +11,8 @@
 	                <div class="row" style="margin-top: 15px;">
 	                    <div class="col-xs-6" style="margin-left: 5x;"> 
 	                    	<span class="product_options">Tình trạng sản phẩm: {{item.state}}</span><br> 
-	                    	<button class="btn btn-primary btn-sm ">Mới 100%</button> 
-	                    	<button class="btn btn-primary btn-sm">Hàng đổi trả còn mới 95%</button>
+	                    	<button class="btn btn-primary btn-sm " style="background-color: #ffffff; color: #212529; border: 1px solid #212529;">Mới 100%</button> 
+	                    	<button class="btn btn-primary btn-sm" style="background-color: #ffffff; color: #212529; border: 1px solid #212529;">Hàng đổi trả còn mới 95%</button>
 	                    </div>
 	                </div>
 	        </div>
@@ -23,11 +23,11 @@
                     </div>
                 </div>
                 <div class="col-xs-6"> 
-                	<button type="button" class="btn btn-primary shop-button" 
+                	<button type="button" class="btn btn-primary shop-button" style="background-color: #ffffff; color: #212529; border: 1px solid #212529;"
                 			@click='addProductToCart(item)'>
                 		Thêm vào giỏ hàng
                 	</button> 
-                	<button type="button" class="btn btn-success shop-button">Mua ngay</button>
+                	<button type="button" class="btn btn-success shop-button" style="background-color: #212529;">Mua ngay</button>
                 </div>
             </div>
         </div>
@@ -128,13 +128,19 @@
 .khoangtrang{
 	margin: 1rem;
 }
+
+.khoangtrang h2 {
+	font-size: 30px;
+	text-align: center;
+	font-weight: 500;
+}
 .detail{
 	margin: 0 auto;
 	border: 1px solid #aaa;
 	padding: 1rem;
 	box-shadow: 5px 7px 5px #bbb;
 	border-radius: 5px;
-	background-color: #ddd;
+	background-color: #ffffff;
 }
 button{
 	margin: 0.5rem;
@@ -146,7 +152,12 @@ button{
 	border-radius: 2px;
 }
 .product_name {
-    font-size: 35px;
+    font-size: 30px;
     font-weight: 500;
+	margin-top: -15px;
+	color: rgb(108, 108, 108);
+}
+.product-info {
+	color: black;
 }
 </style>

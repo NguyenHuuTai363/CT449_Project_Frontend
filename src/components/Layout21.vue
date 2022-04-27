@@ -1,5 +1,5 @@
 <template>
-<div class="">
+<div class="image-introduce">
     <div class="row">
         <div class="col-7">
             <div class="row">
@@ -30,5 +30,16 @@
 
 .card-title-box .card {
     margin: 10px;
+}
+
+.image-introduce {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 5px;
+}
+
+.image-introduce img:hover{
+    color: black;
+    text-shadow: 2px 2px 2px #aaa;
 }
 </style>

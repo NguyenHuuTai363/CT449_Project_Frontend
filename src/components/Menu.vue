@@ -1,58 +1,84 @@
 <template>
     <header>
         <div class="header-container">
-            <div class="row">
-                <div class="col">
-                    <router-link to="/" class="logo">
-                        <h1>MEGA STORE</h1>
-                    </router-link>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!-- Container wrapper -->
+                <div class="container-fluid">
+                    <!-- Toggle button -->
+                    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <router-link to="/" class="logo">
+                           <img src="/src/assets/images/Logo.png" width="150" height="50" alt="">
+                        </router-link> 
+                    </button>
+                    <!-- Collapsible wrapper -->
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Navbar brand -->
+                        <router-link to="/" class="logo">
+                           <img src="/src/assets/images/Logo.png" width="150" height="50" alt="">
+                        </router-link> 
+                    <!-- Left links -->
+                    </div>
+                   
+                    <!-- Right elements -->
+                    <div class="d-flex align-items-center">
+
+                    <!-- Notifications -->
+                    <div class="dropdown">
+                        <a class="text-reset me-3 hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <router-link to='/cart' >
+                            <i class="bi bi-cart-fill" style="color: black;"></i>
+                            <span class="badge rounded-pill badge-notification bg-danger">
+                                {{
+                                    user.profile !== null 
+                                    ?
+                                        user.profile.cart !== null 
+                                        ? 
+                                        user.profile.cart.length
+                                        : 
+                                        0
+                                    :0
+                                }}
+                                <span class="visually-hidden"></span>
+                            </span>
+                        </router-link>
+                        </a>
+                    </div>
+
+                    <!-- Avatar -->
+                    <div class="dropdown item" >
+                        <div class="dropdown-toggle d-flex align-items-center hidden-arrow color" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <router-link to='/login' style="margin:0 7px;">
+                                <i class="bi bi-person-circle"></i>
+                                <span class="name-user" style="color: black;">
+                                    {{
+                                        user.profile !==null ? 
+                                            user.profile.lastName !== "" 
+                                            ? 
+                                            user.profile.lastName 
+                                            :
+                                            ""  
+                                        :
+                                        ""
+                                    }} 
+                                </span>
+                            </router-link>
+                            </div>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" v-if='user.profile' @click='handelLogout()'>Đăng xuất</a>
+                                <a class="dropdown-item" href="#">Thông tin cá nhân</a>
+                                <a class="dropdown-item" href="#">Liên hệ</a>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- Right elements -->
                 </div>
-                <div class="cart col-sm-1 col-lg-1">
-                    <router-link to='/cart' >
-                        <span  class="btn position-relative">
-                          <i class="bi bi-cart-fill"></i>
-                          <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                            {{
-                                user.profile !== null 
-                                ?
-                                    user.profile.cart !== null 
-                                    ? 
-                                    user.profile.cart.length
-                                    : 
-                                    0
-                                :0
-                            }}
-                            <span class="visually-hidden"></span>
-                          </span>
-                        </span>
-                        
-                    </router-link>
-                </div>
-                <div class="user col-sm-2 col-lg-1">
-                    <router-link to='/login'>
-                        <span  class="btn position-relative">
-                            <i class="bi bi-person-fill"></i>
-                            {{
-                                user.profile !==null ? 
-                                    user.profile.lastName !== "" 
-                                    ? 
-                                    user.profile.lastName 
-                                    :
-                                    "Anonymus"  
-                                :
-                                ""
-                            }} 
-                        </span>
-                    </router-link>
-                </div>
-                <div class="logout col-sm-2 col-lg-1" v-if='user.profile' @click='handelLogout()'>
-                    <i class="bi bi-box-arrow-right"></i>Logout
-                </div>
-            </div>
+            <!-- Container wrapper -->
+            </nav>
+            <!-- Navbar -->
         </div>
 
         <!-- navbar-menu------------------------>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -61,19 +87,9 @@
                     v-for='item in pageUrl'
                 >
                     <li class="nav-item ">
-                        <router-link :to='`/${item.url}`' class="nav-link ">{{item.name}}</router-link>
+                        <router-link :to='`/${item.url}`' class="nav-link" style="color: white;">{{item.name}}</router-link>
                     </li>
                 </ul>
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown button
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
-                </div>
                 <Search />
             </div>
         </nav>
@@ -130,22 +146,32 @@
 .bi{
     font-size: 25px;
 } 
-.logo {
+.logo img{
     width: 100%;
-    align-items: center;
+    align-items: left;
     color: black;
-
 }
 
 .logo h1 {
-    font-size: 35px;
+    font-size: 30px;
     font-weight: 700;
-    text-align: center;
+    text-align: left;
+    margin-left: 15px;
+    margin-top: 6px;
+    color: rgb(106, 110, 62);
+
 }
 .cart {
     text-align: right;
-    padding-right: 25px;
     text-decoration: none;
+    color: black;
+}
+
+.cart i{
+    text-align: right;
+    padding-left: 25px;
+    text-decoration: none;
+    color: black;
 }
 
 .cart h1 {
@@ -182,5 +208,70 @@ a:hover,.logout:hover{
     color: black;
     text-shadow: 2px 2px 2px #ddd;  
     cursor: pointer;
+}
+
+.nav-link{
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+    text-decoration: none;
+    text-shadow: none;
+    margin-left: 10px;
+}
+
+.position-absolute{
+    /* margin-top: 12px;
+    margin-left: -110px; */
+    margin-left: -7.3%;
+    margin-top: 0.5%;
+}
+
+.rounded-pill {
+    margin-top: 5px;
+    position: absolute;
+    right: 5px;
+    top: -4px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    right: 5px;
+}
+
+.name-user {
+    position: relative;
+    right: -3px;
+    top: -4px;
+}
+
+.name-user {
+    font-weight: 500;
+}
+
+.d-flex {
+    margin-right: 15px;
+}
+
+.form-control {
+    width: 280px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+.btn-outline-success {
+    color: #ffffff;
+    border-color: #ffff;
+}
+@media only screen and (max-width: 420px) {
+    header {
+        width: 100%;
+    }
+   
+}
+
+@media screen and (min-width: 320px) {
+    header {
+        width: 100%;
+    }
 }
 </style>

@@ -83,8 +83,8 @@
                             <dd class="text-right text-dark b ml-3"><strong>{{formatPrice(countPay)}}</strong></dd>
                         </dl>
                         <hr>
-                        <router-link to="/buy" class="btn btn-out btn-primary btn-square btn-main" data-abc="true">Đặt hàng </router-link>
-                        <router-link to="/home" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Tiếp tục mua hàng</router-link>
+                        <router-link to="/buy" class="btn btn-out btn-primary btn-square btn-main" data-abc="true" style="background-color: #ffffff; color: #212529; border: 1px solid #212529; text-shadow: none;">Đặt hàng </router-link>
+                        <router-link to="/home" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true" style="background-color: #212529; text-shadow: none;">Tiếp tục mua hàng</router-link>
                     </div>
                 </div>
             </aside>
